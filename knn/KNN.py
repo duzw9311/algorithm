@@ -56,13 +56,13 @@ def datingclasstest():
     numtestvecs = int(m*horatio)
     print(numtestvecs)
     errorcount = 0.0
-    for i in range(numtestvecs):#前100个数据进行测试，后面900个数据是原数据集，k取3
+    for i in range(numtestvecs):#前100个数据进行测试，后面900个数据是原数据集，k取4
         classifierresult = classfy0(normmat[i,:],normmat[numtestvecs:m,:],datinglabels[numtestvecs:m],4)
         print("the classifier came back with %d the real answer is %d" %(classifierresult,datinglabels[i]))
         if classifierresult!=datinglabels[i]:errorcount+=1.0
     print("the total error rate is %f"%(errorcount/float(numtestvecs)))
 
-#人性化手动输入约会网站推荐标签测试自己喜欢不
+#手动输入约会网站推荐标签测试自己是否喜欢
 def classifyperson():
     resultlist = ["not at all","in small doses","in large doses"]
     percenttacts = float(input("percentage of time spend playing video games"))
@@ -75,7 +75,7 @@ def classifyperson():
     print("you will like this person",resultlist[classifierresult-1])#分类结果为1，2，3所以减1
 
 
-#huitu
+#绘图
 def showdatas(datingDataMat, datingLabels):
      fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(13,8))
      plt.rcParams['font.sans-serif'] = ['SimHei']
@@ -133,13 +133,4 @@ def showdatas(datingDataMat, datingLabels):
 datingdatamat,datinglabels = file2matrix('datingTestSet2.txt')
 showdatas(datingdatamat,datinglabels)
 classifyperson()
-#绘原数据点图
-# datingdatamat,datinglabels = file2matrix('datingTestSet2.txt')
-# #第一维度特征和第二维度特征绘制散点图（比23区分度明显）
-# fig = plt.figure()
-# ax = fig.add_subplot(111)
-# ax.scatter(datingdatamat[:,0],datingdatamat[:,1],15.0*array(datinglabels),15.0*array(datinglabels))#x,y,s,c  marker = '*'修改marker有很多超好看的图hhhh
-# plt.rcParams['font.sans-serif'] = ['SimHei'] #显示中文
-# ax.set_xlabel("玩视频游戏所耗时间百分比")
-# ax.set_ylabel("每周消费的冰淇淋公斤数")
-# plt.show()
+
